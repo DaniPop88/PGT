@@ -5,18 +5,19 @@
   <title>Pinnacle Goods Trading – Your Reliable Online Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Wholesale and retail of quality office supplies, electronics, and industrial tools. Fast delivery, reliable service, and verified products. Parañaque City, Philippines.">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="pgt-favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap" rel="stylesheet">
-  <link rel="icon" href="logo.png">
   <style>
     :root {
-      --primary: #222b3a;
-      --accent: #0a86d3;
-      --highlight: #ffb64a;
+      --primary: #232b15;      /* dark, grounded for text */
+      --accent: #ff9800;       /* ORANGE from logo */
+      --highlight: #ffcc29;    /* YELLOW from logo */
       --success: #43b047;
       --danger: #fa2f5c;
-      --light-bg: #f5f7fa;
+      --light-bg: #fff7eb;     /* very light orange-tinged bg */
       --card-bg: #fff;
-      --shadow: 0 6px 36px rgba(30,40,70,0.09);
+      --shadow: 0 6px 36px rgba(255,152,0,0.09); /* use orange shadow */
       --radius: 16px;
       --max-card: 700px;
     }
@@ -29,21 +30,39 @@
       padding: 0;
     }
     header {
-      background: linear-gradient(90deg, var(--primary) 70%, var(--accent) 100%);
+      background: linear-gradient(90deg, var(--primary) 72%, var(--accent) 100%);
       color: #fff;
       text-align: center;
-      padding: 36px 0 18px 0;
+      padding: 34px 0 16px 0;
       position: relative;
       box-shadow: var(--shadow);
+    }
+    .header-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 8px;
+    }
+    .header-logo img {
+      height: 56px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 10px;
+      background: #fff0;
+      box-shadow: none;
     }
     .site-title {
       font-family: 'Inter', Arial, sans-serif;
       font-size: 2.2em;
       font-weight: 700;
       letter-spacing: .01em;
-      color: var(--highlight);
-      margin-bottom: 7px;
+      color: var(--accent);
+      margin-bottom: 2px;
       text-shadow: 0 1px 0 #0001;
+      display: inline-block;
+      vertical-align: middle;
     }
     .site-subtitle {
       font-size: 1.13em;
@@ -63,14 +82,14 @@
       font-weight: 600;
       font-size: 1.08em;
       padding: 13px 27px 13px 41px;
-      box-shadow: 0 4px 16px #0a86d322;
+      box-shadow: 0 4px 16px #ff980033;
       cursor: pointer;
       border: 2px solid var(--accent);
       transition: box-shadow .15s, background .15s;
       z-index: 1201;
       display: flex; align-items: center;
     }
-    .cart-sticky:hover, .cart-sticky:focus { background: var(--accent); color: #fff;}
+    .cart-sticky:hover, .cart-sticky:focus { background: var(--accent); color: #fff; border-color: var(--highlight);}
     .cart-icon { font-size: 1.3em; margin-left: -20px; margin-right: 16px; }
     .cart-count { background: var(--danger); color: #fff; border-radius: 100px; font-size:.97em; font-weight:700; padding: 1px 12px; min-width:28px; margin-left:9px;}
     main {
@@ -88,10 +107,10 @@
       max-width: var(--max-card);
       text-align: center;
       transition: box-shadow .18s;
-      border: 1.5px solid #e7e8ee;
+      border: 1.5px solid var(--highlight);
     }
     @media (max-width: 700px) {
-      .section-card { padding: 22px 5vw 18px 5vw; }
+      .section-card, .testimonial-section, .faq-section { padding: 22px 5vw 18px 5vw; }
       main { padding: 0 1vw; }
     }
     h2.section-title {
@@ -136,18 +155,19 @@
       text-align: center;
     }
     .why-card {
-      background: #f9fbff;
+      background: #fff3e0;
       border-radius: 12px;
-      box-shadow: 0 2px 12px #0a86d322;
+      box-shadow: 0 2px 12px #ff980022;
       padding: 15px 16px 15px 16px;
       min-width: 170px; max-width: 215px;
       flex: 1 1 170px;
-      border: 1.2px solid #e6e6e6;
+      border: 1.2px solid #ffcc29;
       font-size: 1em;
       font-weight: 600;
       display: flex; flex-direction: column; align-items: center;
       font-family: 'Inter', Arial, sans-serif;
       text-align: center;
+      color: var(--primary);
     }
     .why-card span { font-size:1.2em; margin-bottom:6px;}
     .category-section {margin-bottom:54px;}
@@ -162,7 +182,7 @@
       box-shadow: var(--shadow);
       padding: 18px 10px 13px 10px;
       margin-bottom: 22px;
-      border: 1.3px solid #e3e3e3;
+      border: 1.5px solid #ffcc29;
       font-family: 'Inter', Arial, sans-serif;
       text-align: center;
       margin-left: auto;
@@ -175,13 +195,13 @@
     }
     .item-list { display: flex; flex-wrap: wrap; gap: 13px; margin-bottom:6px; justify-content: center;}
     .item-card {
-      background: #f7f9fc;
+      background: #fff7e0;
       border-radius: 10px;
-      box-shadow: 0 2px 10px #0a86d311;
+      box-shadow: 0 2px 10px #ff980015;
       padding: 12px 11px 13px 11px;
       min-width: 120px; max-width: 175px;
       flex: 1 1 120px;
-      border: 1.1px solid #e0e0e0;
+      border: 1.3px solid #ffcc29;
       margin-bottom: 4px;
       display: flex; flex-direction: column; align-items: center;
       font-family: 'Inter', Arial, sans-serif;
@@ -190,14 +210,14 @@
     .item-img-holder {
       width: 56px;
       height: 56px;
-      background: #dde2ee;
+      background: #ffe1b2;
       border-radius: 8px;
       margin-bottom: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border: 1px solid #c8c8c8;
+      border: 1px solid #ffb64a;
     }
     .item-img-holder img {
       width: 100%;
@@ -206,13 +226,13 @@
       display: block;
     }
     .item-img-placeholder {
-      color: #b2b5bb; font-size: 2.1em;
+      color: #ff9800; font-size: 2.1em;
     }
     .item-name { font-weight:600; color:var(--primary); margin-bottom:6px; font-size:.97em;}
     .item-qty { color:var(--danger); font-size:.97em; font-weight:700; margin-bottom:5px;}
     .item-price { color:var(--accent); font-size:1em; font-weight:600; margin-bottom:6px;}
     .add-btn {
-      background: var(--success);
+      background: var(--accent);
       color: #fff;
       font-weight: 600;
       border: none;
@@ -234,7 +254,7 @@
       padding: 36px 44px 34px 44px;
       max-width: var(--max-card);
       text-align: center;
-      border: 1.5px solid #e7e8ee;
+      border: 1.5px solid #ffcc29;
     }
     .testimonial-title {
       font-size: 1.2em;
@@ -252,15 +272,15 @@
       margin-bottom: 2px;
     }
     .testimonial-card {
-      background: #f8fafc;
+      background: #fff7e0;
       border-radius: 13px;
-      box-shadow: 0 2px 8px #0a86d311;
+      box-shadow: 0 2px 8px #ff980011;
       padding: 18px 17px 16px 17px;
       min-width: 190px;
       max-width: 240px;
-      border: 1.1px solid #e0e0e0;
+      border: 1.1px solid #ffcc29;
       font-size: .99em;
-      color: #222b3a;
+      color: #232b15;
       text-align: left;
       position: relative;
       margin-bottom: 6px;
@@ -283,7 +303,7 @@
       margin: 38px auto 0 auto;
       padding: 36px 44px 20px 44px;
       max-width: var(--max-card);
-      border: 1.5px solid #e7e8ee;
+      border: 1.5px solid #ffcc29;
       text-align: left;
     }
     .faq-title {
@@ -309,7 +329,7 @@
     }
     .faq-q:before {
       content: "Q:";
-      color: var(--highlight);
+      color: var(--accent);
       margin-right: 6px;
       font-weight: 700;
     }
@@ -319,14 +339,12 @@
       margin-right: 6px;
       font-weight: 700;
     }
-    /* ... keep other modal, footer, responsive styles as previous ... */
-    /* ... truncated for brevity ... */
     .cart-modal-bg {
       display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.36); z-index:1200;
     }
     .cart-modal {
       display:none; position:fixed; top:80px; right:36px; width:350px; max-width:96vw; background:var(--card-bg);
-      border-radius:var(--radius); box-shadow:0 8px 32px #0a86d344,0 0 0 5px #ffb64a2a;
+      border-radius:var(--radius); box-shadow:0 8px 32px #ff980044,0 0 0 5px #ffcc2944;
       z-index:1300; padding:19px 13px 14px 13px; border:2px solid var(--accent); text-align:left;
       font-family: 'Inter', Arial, sans-serif;
       text-align: center;
@@ -339,41 +357,43 @@
     .cart-total-row { font-weight:700; color:var(--success);}
     .cart-modal .empty-msg { color:#aaa; font-style:italic; margin:10px 0;}
     .cart-modal .action-btn {
-      background: var(--highlight); color:var(--primary); font-weight:600; border:none; border-radius:100px; font-size:.96em;
+      background: var(--accent); color:#fff; font-weight:600; border:none; border-radius:100px; font-size:.96em;
       padding:9px 16px; cursor:pointer; margin:10px 7px 0 0; transition:background .13s;
       font-family: 'Inter', Arial, sans-serif;
       text-align: center;
     }
-    .cart-modal .action-btn:hover { background: var(--accent); color:#fff;}
+    .cart-modal .action-btn:hover { background: var(--highlight); color:var(--primary);}
     .checkout-modal {
       display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-      background:var(--card-bg); border-radius:var(--radius); box-shadow:0 4px 22px #2b355320;
+      background:var(--card-bg); border-radius:var(--radius); box-shadow:0 4px 22px #ffa00020;
       z-index:1400; width:98vw; max-width:390px; padding:28px 13px;
       border:2px solid var(--accent); text-align:left;
       font-family: 'Inter', Arial, sans-serif;
       text-align: center;
     }
-    .checkout-modal h2 { color:var(--highlight);}
+    .checkout-modal h2 { color:var(--accent);}
     .checkout-modal label { display:block; margin-top:9px;}
     .checkout-modal input[type="text"], .checkout-modal input[type="email"] {
-      width:94%; padding:8px; border-radius:8px; border:1.3px solid var(--accent); background:#f6f7fb; color:var(--primary); font-family:inherit; font-size:.97em; margin-bottom:10px; outline:none;
+      width:94%; padding:8px; border-radius:8px; border:1.3px solid var(--accent); background:#fff8ef; color:var(--primary); font-family:inherit; font-size:.97em; margin-bottom:10px; outline:none;
       font-family: 'Inter', Arial, sans-serif;
       text-align: center;
     }
     .checkout-modal .order-summary {
-      margin:15px 0 12px 0; color:var(--accent); font-size:.97em; background:#f6f7fb; border-radius:10px; padding:10px 14px; border:1.2px solid #e0e0e0;
+      margin:15px 0 12px 0; color:var(--accent); font-size:.97em; background:#fff3e0; border-radius:10px; padding:10px 14px; border:1.2px solid #ffcc29;
       text-align: center;
     }
-    .checkout-modal .action-btn { background: var(--success); color:#fff; font-weight:600; margin-top:11px;}
+    .checkout-modal .action-btn { background: var(--accent); color:#fff; font-weight:600; margin-top:11px;}
+    .checkout-modal .action-btn:hover { background: var(--highlight); color: var(--primary);}
     .checkout-modal .close-btn { background: var(--danger); color:#fff; margin-top:11px;}
     .checkout-success { color: var(--success); font-weight:700; margin-top:13px; font-size:1.07em;}
     footer {
-      background: #232b3b;
-      color: #e9e9f0;
+      background: #fff3e0;
+      color: #232b15;
       padding: 36px 10px 28px 10px;
       margin-top: 48px;
       font-size: 1.06em;
       font-family: 'Inter', Arial, sans-serif;
+      border-top: 3px solid var(--accent);
     }
     .footer-main {
       max-width: 750px;
@@ -386,26 +406,26 @@
     .footer-socials a {
       display: inline-block;
       margin: 0 8px;
-      color: #0a86d3;
+      color: var(--accent);
       text-decoration: none;
       font-size: 1.5em;
       transition: color .15s;
     }
-    .footer-socials a:hover { color: #ffb64a; }
+    .footer-socials a:hover { color: var(--highlight); }
     .footer-contact-title {
       margin-bottom: 7px;
       font-weight: 600;
       font-size: 1.09em;
-      color: #ffb64a;
+      color: var(--accent);
     }
     .footer-contact {
       margin-bottom: 9px;
-      color: #e9e9f0;
+      color: #232b15;
       font-size: 1em;
     }
-    .footer-contact a { color: #0a86d3; text-decoration: underline; }
+    .footer-contact a { color: var(--accent); text-decoration: underline; }
     .footer-copy {
-      color: #aaa;
+      color: #a9833f;
       font-size: 0.97em;
       margin-top: 10px;
       margin-bottom: 4px;
@@ -415,12 +435,12 @@
       font-size: .98em;
     }
     .footer-links a {
-      color: #0a86d3;
+      color: var(--accent);
       margin: 0 6px;
       text-decoration: underline;
       transition: color .13s;
     }
-    .footer-links a:hover { color: #ffb64a; }
+    .footer-links a:hover { color: var(--highlight); }
     @media (max-width: 900px) {
       main { padding:0 1vw;}
       .category-grid { flex-direction:column;}
@@ -441,7 +461,10 @@
 </head>
 <body>
   <header>
-    <div class="site-title">🛍️ Pinnacle Goods Trading</div>
+    <div class="header-logo">
+      <img src="pgt-logo.png" alt="Pinnacle Goods Trading Logo" height="56" width="56" />
+      <span class="site-title">Pinnacle Goods Trading</span>
+    </div>
     <div class="site-subtitle">Your Reliable Online Store for Quality Goods – Delivered to Your Doorstep</div>
   </header>
   <div class="cart-sticky" id="cart-sticky" tabindex="0" onclick="showCart()" aria-label="Show Cart">
@@ -465,19 +488,19 @@
       <div class="testimonial-title">What Our Customers Say</div>
       <div class="testimonial-list">
         <div class="testimonial-card">
-          "Fast delivery and products are as described. Will order again for our office supplies."
+          "<em>Fast delivery and products are as described. Will order again for our office supplies.</em>"
           <div class="testimonial-name">Anna P. <span class="testimonial-verified">✔️ Verified</span></div>
         </div>
         <div class="testimonial-card">
-          "Got our bulk order in perfect condition. Customer service was responsive and helpful."
+          "<em>Got our bulk order in perfect condition. Customer service was responsive and helpful.</em>"
           <div class="testimonial-name">Jorge R. <span class="testimonial-verified">✔️ Verified</span></div>
         </div>
         <div class="testimonial-card">
-          "The power tools are legit. My company will definitely be a repeat customer."
+          "<em>The power tools are legit. My company will definitely be a repeat customer.</em>"
           <div class="testimonial-name">Mike L. <span class="testimonial-verified">✔️ Verified</span></div>
         </div>
         <div class="testimonial-card">
-          "Love the quick same-day delivery in Metro Manila. Hassle-free and reliable!"
+          "<em>Love the quick same-day delivery in Metro Manila. Hassle-free and reliable!</em>"
           <div class="testimonial-name">Stephanie D. <span class="testimonial-verified">✔️ Verified</span></div>
         </div>
       </div>
@@ -721,7 +744,7 @@
     }
     function highlightCart() {
       const cartDiv = document.getElementById('cart-sticky');
-      cartDiv.style.boxShadow = "0px 12px 40px #ffb64a77, 0 0 0 10px #0a86d3";
+      cartDiv.style.boxShadow = "0px 12px 40px #ffcc2977, 0 0 0 10px #ffa000";
       setTimeout(() => cartDiv.style.boxShadow = "", 500);
     }
     function showCart() {
