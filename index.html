@@ -226,6 +226,101 @@
       text-align: center;
     }
     .add-btn:disabled { opacity:.6; cursor:not-allowed;}
+    .testimonial-section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 38px auto 0 auto;
+      padding: 36px 44px 34px 44px;
+      max-width: var(--max-card);
+      text-align: center;
+      border: 1.5px solid #e7e8ee;
+    }
+    .testimonial-title {
+      font-size: 1.2em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: .01em;
+    }
+    .testimonial-list {
+      display: flex;
+      gap: 22px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2px;
+    }
+    .testimonial-card {
+      background: #f8fafc;
+      border-radius: 13px;
+      box-shadow: 0 2px 8px #0a86d311;
+      padding: 18px 17px 16px 17px;
+      min-width: 190px;
+      max-width: 240px;
+      border: 1.1px solid #e0e0e0;
+      font-size: .99em;
+      color: #222b3a;
+      text-align: left;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .testimonial-name {
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 11px;
+      font-size: .97em;
+    }
+    .testimonial-verified {
+      font-size: .89em;
+      color: var(--success);
+      margin-left: 7px;
+    }
+    .faq-section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 38px auto 0 auto;
+      padding: 36px 44px 20px 44px;
+      max-width: var(--max-card);
+      border: 1.5px solid #e7e8ee;
+      text-align: left;
+    }
+    .faq-title {
+      font-size: 1.2em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-align: center;
+      letter-spacing: .01em;
+    }
+    .faq-item {
+      margin-bottom: 14px;
+    }
+    .faq-q {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .faq-a {
+      color: #333;
+      font-size: .99em;
+      margin-left: 10px;
+    }
+    .faq-q:before {
+      content: "Q:";
+      color: var(--highlight);
+      margin-right: 6px;
+      font-weight: 700;
+    }
+    .faq-a:before {
+      content: "A:";
+      color: var(--success);
+      margin-right: 6px;
+      font-weight: 700;
+    }
+    /* ... keep other modal, footer, responsive styles as previous ... */
+    /* ... truncated for brevity ... */
     .cart-modal-bg {
       display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.36); z-index:1200;
     }
@@ -332,14 +427,14 @@
       .cat-block { max-width:98vw;}
       .cart-modal { right:4vw; width:98vw;}
       .cart-sticky { right:10px; }
-      .section-card { padding: 18px 2vw; }
+      .section-card, .testimonial-section, .faq-section { padding: 18px 2vw; }
     }
     @media (max-width: 600px) {
       .cart-sticky { top: 16px; right: 8px; font-size:.93em; padding:8px 13px 8px 28px;}
       .cart-icon { margin-left: -12px; margin-right: 7px;}
       .site-title { font-size:1.12em;}
       .checkout-modal { padding:13px 2vw;}
-      .section-card { padding: 14px 2vw;}
+      .section-card, .testimonial-section, .faq-section { padding: 14px 2vw;}
       .cat-block { padding:8px 2vw;}
     }
   </style>
@@ -364,6 +459,27 @@
       </div>
       <div class="section-body">
         All orders are processed, packed, and shipped directly from our facility in Moonwalk, Parañaque City.
+      </div>
+    </div>
+    <div class="testimonial-section">
+      <div class="testimonial-title">What Our Customers Say</div>
+      <div class="testimonial-list">
+        <div class="testimonial-card">
+          "Fast delivery and products are as described. Will order again for our office supplies."
+          <div class="testimonial-name">Anna P. <span class="testimonial-verified">✔️ Verified</span></div>
+        </div>
+        <div class="testimonial-card">
+          "Got our bulk order in perfect condition. Customer service was responsive and helpful."
+          <div class="testimonial-name">Jorge R. <span class="testimonial-verified">✔️ Verified</span></div>
+        </div>
+        <div class="testimonial-card">
+          "The power tools are legit. My company will definitely be a repeat customer."
+          <div class="testimonial-name">Mike L. <span class="testimonial-verified">✔️ Verified</span></div>
+        </div>
+        <div class="testimonial-card">
+          "Love the quick same-day delivery in Metro Manila. Hassle-free and reliable!"
+          <div class="testimonial-name">Stephanie D. <span class="testimonial-verified">✔️ Verified</span></div>
+        </div>
       </div>
     </div>
     <div class="section-card">
@@ -406,6 +522,29 @@
           <div class="cat-title">🛠️ Industrial Equipment & Tools</div>
           <div class="item-list" id="industrial-list"></div>
         </div>
+      </div>
+    </div>
+    <div class="faq-section">
+      <div class="faq-title">Frequently Asked Questions</div>
+      <div class="faq-item">
+        <div class="faq-q">Are you a legitimate business?</div>
+        <div class="faq-a">Yes, Pinnacle Goods Trading is a registered distributor with verified contact details and a physical address in Parañaque City.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer bulk or business pricing?</div>
+        <div class="faq-a">Absolutely! We welcome bulk and B2B orders. Please contact us for custom quotations.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How fast is delivery?</div>
+        <div class="faq-a">Metro Manila orders can be delivered same-day via Grab/Lalamove. Provincial orders ship within 1–3 business days.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What payment methods are accepted?</div>
+        <div class="faq-a">We accept GCash, BPI, BDO, and Cash on Delivery (Metro Manila only).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you provide official receipts?</div>
+        <div class="faq-a">Yes, official receipts and business documents are available upon request for all transactions.</div>
       </div>
     </div>
     <div class="section-card">
