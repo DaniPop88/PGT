@@ -31,8 +31,6 @@
       padding: 54px 0 0 0;
       background: var(--light-bg);
     }
-
-    /* HEADER BACKGROUND IMAGE */
     header {
       position: relative;
       color: #fff;
@@ -111,8 +109,6 @@
       max-width: 99%;
       z-index: 2;
     }
-
-    /* NAVIGATION */
     .main-nav {
       position: fixed;
       top: 0;
@@ -281,7 +277,6 @@
       .header-logo img { height:48px; width:48px;}
       .header-inner { padding:22px 8px 22px 8px;}
     }
-
     main {
       max-width: 1060px;
       margin: 0 auto;
@@ -462,6 +457,7 @@
       text-align: center;
     }
     .add-btn:disabled { opacity:.6; cursor:not-allowed;}
+    /* Testimonial Slider Styles */
     .testimonial-section {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -471,6 +467,8 @@
       max-width: var(--max-card);
       text-align: center;
       border: 1.5px solid #ffcc29;
+      overflow: hidden;
+      position: relative;
     }
     .testimonial-title {
       font-size: 1.2em;
@@ -480,12 +478,19 @@
       text-align: center;
       letter-spacing: .01em;
     }
-    .testimonial-list {
+    .testimonial-slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      min-height: 200px;
+      display: flex; /* ADD THIS */
+      align-items: center; /* ADD THIS */
+      justify-content: center; /* ADD THIS */
+    }
+    .testimonial-slider-track {
       display: flex;
-      gap: 22px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 2px;
+      transition: transform 0.7s cubic-bezier(0.49, 0.09, 0.47, 1.01);
+      will-change: transform;
     }
     .testimonial-card {
       background: #fff7e0;
@@ -499,7 +504,9 @@
       color: #232b15;
       text-align: left;
       position: relative;
-      margin-bottom: 6px;
+      margin: 0 11px;
+      flex: 0 0 45%;
+      box-sizing: border-box;
     }
     .testimonial-name {
       font-weight: 700;
@@ -511,6 +518,36 @@
       font-size: .89em;
       color: var(--success);
       margin-left: 7px;
+    }
+    .testimonial-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 11px 15px;
+      font-size: 1.2em;
+      cursor: pointer;
+      z-index: 2;
+      transition: background .11s;
+      opacity: 0.8;
+    }
+    .testimonial-arrow:hover { background: var(--highlight); color: var(--primary);}
+    .testimonial-arrow.prev { left: 0; }
+    .testimonial-arrow.next { right: 0; }
+    @media (max-width: 600px) {
+      .testimonial-card {
+        min-width: 98vw;
+        max-width: 98vw;
+        margin: 0 2vw;
+        flex: 0 0 100%;
+      }
+      .testimonial-arrow { display: none; }
+    }
+    @media (min-width: 601px) and (max-width: 900px) {
+      .testimonial-card { flex: 0 0 70%; }
     }
     .faq-section {
       background: var(--card-bg);
@@ -580,7 +617,6 @@
       text-align: center;
     }
     .cart-modal .action-btn:hover { background: var(--highlight); color:var(--primary);}
-    /* Remove checkout-modal styling, we do not use modal anymore */
     .checkout-modal { display:none !important; }
     .checkout-modal-bg { display:none !important; }
     .checkout-success { display:none !important; }
@@ -740,123 +776,10 @@
     </div>
     <div class="testimonial-section" id="testi">
       <div class="testimonial-title">WHAT OUR CUSTOMER SAY</div>
-      <div class="testimonial-list">
-        <div class="testimonial-card">
-          "<em>Fast delivery and products are exactly as described. Will definitely order again for our office supplies.</em>"
-          <div class="testimonial-name">Anna P. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Received our bulk order in perfect condition. Customer service was responsive and very helpful.</em>"
-          <div class="testimonial-name">Jorge R. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>The power tools are excellent quality. We’ll be repeat customers for sure.</em>"
-          <div class="testimonial-name">Mike L. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Love the quick same-day delivery in Metro Manila. Fast and reliable service!</em>"
-          <div class="testimonial-name">Stephanie D. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Everything arrived on time and in perfect condition. Really impressed with the overall service!</em>"
-          <div class="testimonial-name">Rafael M. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>The online ordering process is smooth and the delivery was exactly as promised. Great job!</em>"
-          <div class="testimonial-name">Lorena G. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Ordered some office furniture and it arrived faster than expected. Excellent service!</em>"
-          <div class="testimonial-name">Lucas B. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>I’m very happy with the products. The quality is great, and delivery was right on time.</em>"
-          <div class="testimonial-name">Claire T. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Fantastic service! They were quick to answer my queries and the products were just as I expected.</em>"
-          <div class="testimonial-name">Sam H. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>We are a long-time customer, and as always, everything was handled professionally and efficiently.</em>"
-          <div class="testimonial-name">Olivia K. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Their prices are competitive, and the delivery was speedy. I highly recommend this service.</em>"
-          <div class="testimonial-name">Dan W. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Really appreciate the seamless ordering process and the prompt delivery. I’ll definitely order again.</em>"
-          <div class="testimonial-name">Isabella F. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Had a great experience with their customer support. They helped me every step of the way!</em>"
-          <div class="testimonial-name">Ryan P. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>The items I purchased were exactly what I needed, and the delivery was super fast. A+!</em>"
-          <div class="testimonial-name">Ella S. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Very impressed with the quality of the products and the fast shipping. Will buy again soon!</em>"
-          <div class="testimonial-name">Victor L. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Had a smooth experience from start to finish. Will continue to support their business.</em>"
-          <div class="testimonial-name">Carmen R. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Impressed by the quality of service and the prompt delivery. Definitely ordering more soon.</em>"
-          <div class="testimonial-name">Harry M. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Had a minor issue, but customer service quickly resolved it. Very happy with the overall experience!</em>"
-          <div class="testimonial-name">Sophia J. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Everything was delivered on time, and the products were exactly as expected. Excellent service!</em>"
-          <div class="testimonial-name">David H. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Purchased several office supplies, and they arrived well-packaged and on time. Excellent!</em>"
-          <div class="testimonial-name">Lily P. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Everything was perfect. I’m a repeat customer and will continue to use their services.</em>"
-          <div class="testimonial-name">William F. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>The experience was flawless. Quick delivery and great products. Very happy with my purchase!</em>"
-          <div class="testimonial-name">Jackie N. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>I trust this company. My bulk order came right on time, and everything was perfect.</em>"
-          <div class="testimonial-name">Thomas E. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>The products I ordered were exactly what I needed. The service was great too!</em>"
-          <div class="testimonial-name">Jessica K. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>I will definitely recommend this company to others. Fast, reliable, and easy to work with.</em>"
-          <div class="testimonial-name">Sarah W. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>The whole process was straightforward and easy. Delivery was faster than I expected.</em>"
-          <div class="testimonial-name">Ethan C. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Fast delivery, great quality. Will definitely order again for our next project!</em>"
-          <div class="testimonial-name">Olivia T. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>I'm satisfied with the product quality and the delivery was right on schedule.</em>"
-          <div class="testimonial-name">Ava P. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
-        <div class="testimonial-card">
-          "<em>Had a great experience ordering for my company. The products were top-notch, and service was excellent.</em>"
-          <div class="testimonial-name">Zoe S. <span class="testimonial-verified">✔️ Verified</span></div>
-        </div>
+      <div class="testimonial-slider">
+        <button class="testimonial-arrow prev" aria-label="Previous testimonial" onclick="moveTestimonial(-1)">&#8592;</button>
+        <div class="testimonial-slider-track" id="testimonialTrack"></div>
+        <button class="testimonial-arrow next" aria-label="Next testimonial" onclick="moveTestimonial(1)">&#8594;</button>
       </div>
     </div>
     <div class="faq-section" id="faq">
@@ -1095,7 +1018,6 @@
         alert("Your cart is empty!");
         return;
       }
-      // Save cart and redirect to order-summary.html
       localStorage.setItem('pinnacle_cart', JSON.stringify(cart));
       window.location.href = "order-summary.html";
     }
@@ -1104,6 +1026,83 @@
       cart = [];
       updateCart();
     }
+
+    // --- Testimonial Slider JS ---
+    const testimonials = [
+      { text: "Fast delivery and products are exactly as described. Will definitely order again for our office supplies.", name: "Anna P.", verified: true },
+      { text: "Received our bulk order in perfect condition. Customer service was responsive and very helpful.", name: "Jorge R.", verified: true },
+      { text: "The power tools are excellent quality. We'll be repeat customers for sure.", name: "Mike L.", verified: true },
+      { text: "Love the quick same-day delivery in Metro Manila. Fast and reliable service!", name: "Stephanie D.", verified: true },
+      { text: "Everything arrived on time and in perfect condition. Really impressed with the overall service!", name: "Rafael M.", verified: true },
+      { text: "The online ordering process is smooth and the delivery was exactly as promised. Great job!", name: "Lorena G.", verified: true },
+      { text: "Ordered some office furniture and it arrived faster than expected. Excellent service!", name: "Lucas B.", verified: true },
+      { text: "I'm very happy with the products. The quality is great, and delivery was right on time.", name: "Claire T.", verified: true },
+      { text: "Fantastic service! They were quick to answer my queries and the products were just as I expected.", name: "Sam H.", verified: true },
+      { text: "We are a long-time customer, and as always, everything was handled professionally and efficiently.", name: "Olivia K.", verified: true },
+      { text: "Their prices are competitive, and the delivery was speedy. I highly recommend this service.", name: "Dan W.", verified: true },
+      { text: "Really appreciate the seamless ordering process and the prompt delivery. I'll definitely order again.", name: "Isabella F.", verified: true },
+      { text: "Had a great experience with their customer support. They helped me every step of the way!", name: "Ryan P.", verified: true },
+      { text: "The items I purchased were exactly what I needed, and the delivery was super fast. A+!", name: "Ella S.", verified: true },
+      { text: "Very impressed with the quality of the products and the fast shipping. Will buy again soon!", name: "Victor L.", verified: true },
+      { text: "Had a smooth experience from start to finish. Will continue to support their business.", name: "Carmen R.", verified: true },
+      { text: "Impressed by the quality of service and the prompt delivery. Definitely ordering more soon.", name: "Harry M.", verified: true },
+      { text: "Had a minor issue, but customer service quickly resolved it. Very happy with the overall experience!", name: "Sophia J.", verified: true },
+      { text: "Everything was delivered on time, and the products were exactly as expected. Excellent service!", name: "David H.", verified: true },
+      { text: "Purchased several office supplies, and they arrived well-packaged and on time. Excellent!", name: "Lily P.", verified: true },
+      { text: "Everything was perfect. I'm a repeat customer and will continue to use their services.", name: "William F.", verified: true },
+      { text: "The experience was flawless. Quick delivery and great products. Very happy with my purchase!", name: "Jackie N.", verified: true },
+      { text: "I trust this company. My bulk order came right on time, and everything was perfect.", name: "Thomas E.", verified: true },
+      { text: "The products I ordered were exactly what I needed. The service was great too!", name: "Jessica K.", verified: true },
+      { text: "I will definitely recommend this company to others. Fast, reliable, and easy to work with.", name: "Sarah W.", verified: true },
+      { text: "The whole process was straightforward and easy. Delivery was faster than I expected.", name: "Ethan C.", verified: true },
+      { text: "Fast delivery, great quality. Will definitely order again for our next project!", name: "Olivia T.", verified: true },
+      { text: "I'm satisfied with the product quality and the delivery was right on schedule.", name: "Ava P.", verified: true },
+      { text: "Had a great experience ordering for my company. The products were top-notch, and service was excellent.", name: "Zoe S.", verified: true }
+    ];
+    let testimonialIndex = 0;
+    let testimonialsPerView = 2;
+    let autoSlideInterval = null;
+
+    function updateTestimonialsPerView() {
+      testimonialsPerView = window.innerWidth <= 600 ? 1 : 2;
+    }
+    function renderTestimonials() {
+      updateTestimonialsPerView();
+      const track = document.getElementById('testimonialTrack');
+      track.innerHTML = '';
+      for(let i=0; i<testimonialsPerView; i++) {
+        const idx = (testimonialIndex + i) % testimonials.length;
+        const t = testimonials[idx];
+        const card = document.createElement('div');
+        card.className = 'testimonial-card';
+        card.innerHTML = `
+          "<em>${t.text}</em>"
+          <div class="testimonial-name">${t.name} <span class="testimonial-verified">✔️ Verified</span></div>
+        `;
+        track.appendChild(card);
+      }
+      track.style.transform = 'translateX(0)';
+    }
+    function moveTestimonial(dir) {
+      testimonialIndex = (testimonialIndex + dir + testimonials.length) % testimonials.length;
+      renderTestimonials();
+      resetAutoSlide();
+    }
+    function autoSlideTestimonials() {
+      testimonialIndex = (testimonialIndex + testimonialsPerView) % testimonials.length;
+      renderTestimonials();
+    }
+    function resetAutoSlide() {
+      if(autoSlideInterval) clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(autoSlideTestimonials, 3400);
+    }
+    window.addEventListener('resize', function() {
+      renderTestimonials();
+    });
+    window.addEventListener('DOMContentLoaded', function() {
+      renderTestimonials();
+      resetAutoSlide();
+    });
   </script>
 </body>
 </html>
