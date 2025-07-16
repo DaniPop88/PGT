@@ -6,7 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/FAVICON.png">
     <style>
-        body { font-family: Inter, Arial, sans-serif; margin:0; padding:0; background:#f4f4f4;}
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: Inter, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            min-height: 100vh;
+            position: relative;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+        /* Background Favicon Pattern */
+        .favicon-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .favicon-icon {
+            position: absolute;
+            width: 54px;
+            height: 54px;
+            opacity: 0.10;
+            filter: drop-shadow(0 0 2px #ff9800);
+            pointer-events: none;
+            animation: floatFavicon 18s infinite linear alternate;
+        }
+        @keyframes floatFavicon {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(24px); }
+        }
+
+        /* Main Container */
         .summary-container {
             max-width: 520px;
             margin: 32px auto;
@@ -14,6 +52,8 @@
             padding: 32px 26px 30px 26px;
             border-radius: 14px;
             box-shadow: 0 4px 18px rgba(255,152,0,0.13);
+            position: relative;
+            z-index: 2;
         }
         .brand-logo {
             display: block;
@@ -169,6 +209,9 @@
     </style>
 </head>
 <body>
+    <!-- Favicon BG Pattern -->
+    <div class="favicon-bg" id="favicon-bg"></div>
+
     <div class="summary-container">
         <img src="images/LOGO.png" alt="Pinnacle Goods Trading Logo" class="brand-logo" loading="lazy" width="90" height="90">
         <h1>Your Order Summary</h1>
@@ -280,6 +323,31 @@
         <a href="index.html" class="back-btn">← Back to Shop</a>
     </div>
     <script>
+        // Favicon background generator
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function createFavicons() {
+            const container = document.getElementById('favicon-bg');
+            container.innerHTML = '';
+            // Number of favicons depends on screen size
+            let num = Math.max(24, Math.floor(window.innerWidth * window.innerHeight / 35000));
+            for(let i=0; i<num; i++) {
+                let img = document.createElement('img');
+                img.src = 'images/FAVICON.png';
+                img.className = 'favicon-icon';
+                // Random position and staggered animation
+                img.style.top = randomInt(0, 90) + 'vh';
+                img.style.left = randomInt(0, 95) + 'vw';
+                img.style.opacity = (Math.random() * 0.18 + 0.08).toFixed(2); // 0.08-0.26
+                img.style.transform = `rotate(${randomInt(0,360)}deg) scale(${(Math.random()*0.5+0.7).toFixed(2)})`;
+                img.style.animationDelay = (Math.random()*20).toFixed(1)+'s';
+                container.appendChild(img);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', createFavicons);
+        window.addEventListener('resize', createFavicons);
+
         // Payment with logo
         const paymentGroups = [
             [{ name: "GCASH", icon: "images/GCASH.png" }],
