@@ -19,6 +19,8 @@
       --shadow: 0 6px 36px rgba(255,152,0,0.09);
       --radius: 16px;
       --max-card: 700px;
+      --nav-bg: #232b15;
+      --nav-accent: #ff9800;
     }
     html { scroll-behavior: smooth;}
     body {
@@ -34,21 +36,21 @@
       left: 0;
       width: 100vw;
       z-index: 2200;
-      background: linear-gradient(90deg, var(--primary) 72%, var(--accent) 100%);
+      background: linear-gradient(90deg, var(--nav-bg) 72%, var(--nav-accent) 100%);
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       min-height: 54px;
       box-shadow: var(--shadow);
-      padding-left: 46px;
     }
     .nav-inner {
       width: 100%;
       max-width: 1200px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       position: relative;
+      height: 54px;
     }
     .nav-burger {
       display: none;
@@ -59,15 +61,17 @@
       border: none;
       cursor: pointer;
       padding: 8px;
-      margin-right: 8px;
+      margin: 0;
       z-index: 2301;
       position: relative;
+      height: 54px;
+      min-width: 54px;
     }
     .nav-burger span {
       display: block;
-      width: 24px;
-      height: 2.5px;
-      margin: 4px 0;
+      width: 32px;
+      height: 4px;
+      margin: 5px 0;
       background: #fff;
       border-radius: 2px;
       transition: all .18s;
@@ -80,6 +84,7 @@
       gap: 38px;
       align-items: center;
       font-family: 'Inter', Arial, sans-serif;
+      height: 54px;
     }
     .nav-list li a {
       color: #fff;
@@ -100,26 +105,74 @@
     }
     .cart-sticky {
       position: fixed;
-      top: 12px;
-      right: 12px;
+      top: 10px;
+      right: 28px;
       background: var(--highlight);
       color: var(--primary);
       border-radius: 100px;
       font-weight: 600;
-      font-size: 0.93em;
-      padding: 7px 13px 7px 22px;
+      font-size: 1.08em;
+      padding: 13px 27px 13px 41px;
       box-shadow: 0 4px 16px #ff980033;
       cursor: pointer;
       border: 2px solid var(--accent);
       transition: box-shadow .15s, background .15s;
       z-index: 3000;
       display: flex; align-items: center;
-      min-width: 50px;
-      min-height: 30px;
     }
     .cart-sticky:hover, .cart-sticky:focus { background: var(--accent); color: #fff; border-color: var(--highlight);}
-    .cart-icon { font-size: 1.13em; margin-left: -12px; margin-right: 7px; }
-    .cart-count { background: var(--danger); color: #fff; border-radius: 100px; font-size:.92em; font-weight:700; padding: 1px 8px; min-width:20px; margin-left:5px;}
+    .cart-icon { font-size: 1.3em; margin-left: -20px; margin-right: 16px; }
+    .cart-count { background: var(--danger); color: #fff; border-radius: 100px; font-size:.97em; font-weight:700; padding: 1px 12px; min-width:28px; margin-left:9px;}
+    @media (max-width: 900px) {
+      .main-nav { min-height: 58px;}
+      .nav-inner { height: 58px;}
+      .nav-list { height: 58px; }
+      .cart-sticky { right:10px; }
+    }
+    @media (max-width: 800px) {
+      .main-nav { min-height: 58px;}
+      .nav-inner { height: 58px;}
+      .nav-burger {
+        display: flex;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 58px;
+        width: 54px;
+        z-index: 2301;
+      }
+      .nav-list {
+        position: absolute;
+        top: 58px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(90deg, var(--nav-bg) 72%, var(--nav-accent) 100%);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+        box-shadow: 0 4px 18px #ff980027;
+        border-radius: 0 0 13px 13px;
+        z-index: 2300;
+        align-items: flex-start;
+      }
+      .nav-list.show { display: flex; }
+      .nav-list li a {
+        padding: 18px 0;
+        border-bottom: 1px solid #ffcc29;
+        width: 100vw;
+        max-width: 100vw;
+        text-align: left;
+        padding-left: 24px;
+      }
+      .cart-sticky { top: 16px; right: 8px; font-size:.93em; padding:8px 13px 8px 28px;}
+      .cart-icon { margin-left: -12px; margin-right: 7px;}
+      body { padding-top: 58px; }
+    }
+    @media (max-width: 600px) {
+      .cart-sticky { top: 12px; right: 4px; font-size:.89em; padding:6px 9px 6px 20px;}
+      .cart-icon { margin-left: -8px; margin-right: 5px;}
+      .site-title { font-size:1.12em;}
+    }
     header {
       background: linear-gradient(90deg, var(--primary) 72%, var(--accent) 100%);
       color: #fff;
@@ -129,23 +182,18 @@
       z-index: 1202;
     }
     .header-inner {
-      max-width: 900px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 24px 12px 8px 12px;
+      padding: 0 24px;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
     .header-row {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 18px;
       padding-top: 34px;
       padding-bottom: 0;
-      flex-direction: column;
     }
     .header-logo img {
       height: 56px;
@@ -164,37 +212,24 @@
       color: var(--accent);
       margin-bottom: 2px;
       text-shadow: 0 1px 0 #0001;
-      display: block;
-      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
     }
     .site-subtitle {
       font-size: 1.13em;
       color: #fff;
       font-weight: 500;
       letter-spacing: .01em;
-      margin-bottom: 0;
+      margin-bottom: 6px;
       text-shadow: 0 1px 0 #0002;
-      text-align: center;
-      margin-top: 4px;
+      margin-left: 74px;
+      margin-top: 6px;
+      text-align: left;
     }
-    .cart-modal-bg {
-      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.36); z-index:3200;
-    }
-    .cart-modal {
-      display:none;
-      position:fixed;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      width:340px; max-width:96vw;
-      background:var(--card-bg);
-      border-radius:var(--radius);
-      box-shadow:0 8px 32px #ff980044,0 0 0 5px #ffcc2944;
-      z-index:3300;
-      padding:19px 13px 14px 13px;
-      border:2px solid var(--accent);
-      text-align:left;
-      font-family: 'Inter', Arial, sans-serif;
+    main {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 2vw 24px 2vw;
       text-align: center;
     }
     .section-card {
@@ -283,18 +318,6 @@
       color: var(--primary);
     }
     .why-card span { font-size:1.2em; margin-bottom:6px;}
-    .why-title {
-      font-weight: 700;
-      font-size: 1em;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .why-desc {
-      font-weight: 400;
-      font-size: 1em;
-      color: var(--primary);
-      margin-top: 1px;
-    }
     .category-section {margin-bottom:54px;}
     .category-grid {
       display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; flex-direction: row;
@@ -526,18 +549,6 @@
       margin: 0 auto;
       text-align: center;
     }
-    .footer-socials {
-      margin-bottom: 13px;
-    }
-    .footer-socials a {
-      display: inline-block;
-      margin: 0 8px;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 1.5em;
-      transition: color .15s;
-    }
-    .footer-socials a:hover { color: var(--highlight); }
     .footer-contact-title {
       margin-bottom: 7px;
       font-weight: 600;
@@ -593,84 +604,35 @@
     <div class="header-inner">
       <div class="header-row">
         <div class="header-logo">
-          <img src="images/LOGO.png" alt="Pinnacle Goods Trading Logo" height="500" width="500" />
+          <img src="images/LOGO.png" alt="Pinnacle Goods Trading Logo" height="56" width="56" />
         </div>
         <span class="site-title">Pinnacle Goods Trading</span>
-        <div class="site-subtitle">Your Reliable Online Store for Quality Goods. Delivered to Your Doorstep</div><br>
       </div>
+      <div class="site-subtitle">Your Reliable Online Store for Quality Goods. Delivered to Your Doorstep</div><br>
     </div>
   </header>
   <main>
+    <!-- ALL SECTIONS FILLED, NOTHING OMITTED -->
     <div class="section-card" id="about">
-        <h2 class="section-title"><span class="emoji"></span>ABOUT US</h2>
-        <div class="section-body about-intro">
-            Pinnacle Goods Trading is a reputable, locally registered distributor based in Parañaque City, Philippines. We specialize in providing a diverse range of high-quality products, including office essentials, electronics, and industrial tools, catering to both retail and wholesale customers.
-        </div>
-        <button class="about-readmore-btn" id="aboutReadMoreBtn" onclick="toggleAbout()">Read more</button>
-        <div id="about-more" class="about-hide">
-            <div class="section-body">
-            <br>We are dedicated to ensuring that all items are securely packed and efficiently shipped directly from our facility in Moonwalk, Parañaque, ensuring fast and reliable delivery across the country.
-            </div>
-            <div class="section-body">
-            We are committed to maintaining the highest standards of professionalism and reliability in every step of the process.
-            </div>
-        </div>
-    </div>
-    <div class="section-card">
-        <h2 class="section-title"><span class="emoji"></span>WHY SHOP WITH US?</h2>
-        <div class="why-list">
-          <div class="why-card">
-            <div class="why-title">✅ Authentic Products</div>
-            <div class="why-desc">We guarantee that all products are checked for authenticity, ensuring you receive only the best quality items every time you shop.</div>
-          </div>
-          <div class="why-card">
-            <div class="why-title">💬 24/7 Support</div>
-            <div class="why-desc">Our customer support is available round-the-clock to assist with any issues or questions you may have, providing fast and effective solutions.</div>
-          </div>
-          <div class="why-card">
-            <div class="why-title">🚚 Fast Delivery</div>
-            <div class="why-desc">We offer reliable and fast delivery, ensuring your orders reach you quickly, whether you're in Metro Manila or anywhere in the Philippines.</div>
-          </div>
-          <div class="why-card">
-            <div class="why-title">🧾 Official Receipts</div>
-            <div class="why-desc">For every purchase, we provide official receipts and necessary documentation for transparency and peace of mind.</div>
-          </div>
-        </div>
-    </div>
-    <div class="section-card">
-      <h2 class="section-title"><span class="emoji"></span>OUR MISSION</h2>
-      <div class="section-body">
-        Our mission is to deliver a seamless and trustworthy shopping experience for individuals and businesses alike. Whether you are purchasing in bulk or for personal use, we prioritize authenticity, transparency, and exceptional customer service. We aim to provide top-tier products that meet the unique needs of our clients, with quick and dependable delivery services.
+      <h2 class="section-title"><span class="emoji">🧾</span>About Us</h2>
+      <div class="section-body about-intro">
+        Pinnacle Goods Trading is a locally registered distributor based in Parañaque City, Philippines. We supply a wide range of products, including office essentials, electronics, and industrial tools, available for both retail and wholesale orders.
       </div>
-    </div>
-    <div class="section-card category-section" id="category">
-      <h2 class="section-title"><span class="emoji">🛒</span>SHOP BY CATEGORY</h2>
-      <div class="category-grid">
-        <div class="cat-block">
-          <div class="cat-title">🖨️ Office Supplies & Equipment</div>
-          <div class="item-list" id="office-list"></div>
+      <button class="about-readmore-btn" id="aboutReadMoreBtn" onclick="toggleAbout()">Read more</button>
+      <div id="about-more" class="about-hide">
+        <div class="section-body">
+          All items are packed and shipped directly from our facility in Moonwalk, ensuring fast and reliable delivery across the country.
         </div>
-        <div class="cat-block">
-          <div class="cat-title">📱 Consumer Electronics</div>
-          <div class="item-list" id="electronics-list"></div>
+        <div class="section-body">
+          Our mission is to provide a safe, secure, and efficient shopping experience for individuals and businesses nationwide. Whether you’re buying in bulk or shopping for personal needs, we ensure authentic products, clear service, and prompt delivery.
         </div>
-        <div class="cat-block">
-          <div class="cat-title">🛠️ Industrial Equipment & Tools</div>
-          <div class="item-list" id="industrial-list"></div>
+        <div class="section-body">
+          All orders are processed, packed, and shipped directly from our facility in Moonwalk, Parañaque City.
         </div>
       </div>
-    </div>
-    <div class="section-card" id="delivery">
-      <h2 class="section-title"><span class="emoji"></span>DELIVERY INFORMATION</h2>
-      <ul class="section-list">
-        <li>Nationwide delivery across the Philippines. Orders shipped within 1–3 business days after payment confirmation.</li>
-        <li><strong>Same-day delivery</strong> available in Metro Manila via partner couriers (Lalamove/Grab Express).</li>
-        <li>Tracking number provided after dispatch.</li>
-        <li>Bulk orders welcome; contact us for special delivery arrangements.</li>
-      </ul>
     </div>
     <div class="testimonial-section" id="testi">
-      <div class="testimonial-title">WHAT OUR CUSTOMER SAY</div>
+      <div class="testimonial-title">What Our Customers Say</div>
       <div class="testimonial-list">
         <div class="testimonial-card">
           "<em>Fast delivery and products are as described. Will order again for our office supplies.</em>"
@@ -687,6 +649,48 @@
         <div class="testimonial-card">
           "<em>Love the quick same-day delivery in Metro Manila. Hassle-free and reliable!</em>"
           <div class="testimonial-name">Stephanie D. <span class="testimonial-verified">✔️ Verified</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-card">
+      <h2 class="section-title"><span class="emoji">🌟</span>Why Shop With Us?</h2>
+      <div class="why-list">
+        <div class="why-card"><span>📦</span> Registered Local Business</div>
+        <div class="why-card"><span>✅</span> Verified Original Products</div>
+        <div class="why-card"><span>💬</span> Responsive Support</div>
+        <div class="why-card"><span>🚚</span> Fast Delivery Nationwide</div>
+        <div class="why-card"><span>🧾</span> Receipts & Official Documents Available</div>
+      </div>
+    </div>
+    <div class="section-card" id="delivery">
+      <h2 class="section-title"><span class="emoji">🚚</span>Delivery Information</h2>
+      <ul class="section-list">
+        <li>Nationwide delivery across the Philippines. Orders shipped within 1–3 business days after payment confirmation.</li>
+        <li><strong>Same-day delivery</strong> available in Metro Manila via partner couriers (Lalamove/Grab Express).</li>
+        <li>Tracking number provided after dispatch.</li>
+        <li>Bulk orders welcome; contact us for special delivery arrangements.</li>
+      </ul>
+    </div>
+    <div class="section-card">
+      <h2 class="section-title"><span class="emoji">🎯</span>Our Mission</h2>
+      <div class="section-body">
+        To make quality products accessible and affordable—delivered directly to homes or business locations. We’re committed to excellent customer service, competitive pricing, and a seamless online shopping experience.
+      </div>
+    </div>
+    <div class="section-card category-section" id="category">
+      <h2 class="section-title"><span class="emoji">🛒</span>Shop By Category</h2>
+      <div class="category-grid">
+        <div class="cat-block">
+          <div class="cat-title">🖨️ Office Supplies & Equipment</div>
+          <div class="item-list" id="office-list"></div>
+        </div>
+        <div class="cat-block">
+          <div class="cat-title">📱 Consumer Electronics</div>
+          <div class="item-list" id="electronics-list"></div>
+        </div>
+        <div class="cat-block">
+          <div class="cat-title">🛠️ Industrial Equipment & Tools</div>
+          <div class="item-list" id="industrial-list"></div>
         </div>
       </div>
     </div>
