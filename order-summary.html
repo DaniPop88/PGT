@@ -8,6 +8,7 @@
     <style>
         html, body {
             height: 100%;
+            min-height: 100vh;
         }
         body {
             font-family: Inter, Arial, sans-serif;
@@ -19,7 +20,7 @@
             width: 100vw;
             overflow-x: hidden;
         }
-        /* Background Favicon Pattern */
+        /* Favicon Pattern Background */
         .favicon-bg {
             position: fixed;
             top: 0;
@@ -34,16 +35,16 @@
             position: absolute;
             width: 54px;
             height: 54px;
-            opacity: 0.10;
+            opacity: 0.13;
             filter: drop-shadow(0 0 2px #ff9800);
             pointer-events: none;
+            transition: filter 0.2s;
             animation: floatFavicon 18s infinite linear alternate;
         }
         @keyframes floatFavicon {
             0% { transform: translateY(0); }
             100% { transform: translateY(24px); }
         }
-
         /* Main Container */
         .summary-container {
             max-width: 520px;
@@ -323,7 +324,7 @@
         <a href="index.html" class="back-btn">← Back to Shop</a>
     </div>
     <script>
-        // Favicon background generator
+        // Favicon background generator - preventing overlaps
         function randomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
@@ -332,13 +333,39 @@
             container.innerHTML = '';
             // Number of favicons depends on screen size
             let num = Math.max(24, Math.floor(window.innerWidth * window.innerHeight / 35000));
-            for(let i=0; i<num; i++) {
+            const positions = [];
+            const ICON_SIZE = 54;
+            const MIN_DIST = 70;
+            for(let i = 0; i < num; i++) {
+                let placed = false;
+                let maxAttempts = 100;
+                let attempt = 0;
+                let x, y;
+                while (!placed && attempt < maxAttempts) {
+                    x = randomInt(0, window.innerWidth - ICON_SIZE);
+                    y = randomInt(0, window.innerHeight - ICON_SIZE);
+                    let ok = true;
+                    for (let pos of positions) {
+                        let dx = pos.x - x;
+                        let dy = pos.y - y;
+                        if (Math.sqrt(dx*dx + dy*dy) < MIN_DIST) {
+                            ok = false;
+                            break;
+                        }
+                    }
+                    if (ok) {
+                        placed = true;
+                        positions.push({x, y});
+                    }
+                    attempt++;
+                }
+                // If can't find a spot, just place anyway
+                if (!placed) positions.push({x, y});
                 let img = document.createElement('img');
                 img.src = 'images/FAVICON.png';
                 img.className = 'favicon-icon';
-                // Random position and staggered animation
-                img.style.top = randomInt(0, 90) + 'vh';
-                img.style.left = randomInt(0, 95) + 'vw';
+                img.style.left = x + 'px';
+                img.style.top = y + 'px';
                 img.style.opacity = (Math.random() * 0.18 + 0.08).toFixed(2); // 0.08-0.26
                 img.style.transform = `rotate(${randomInt(0,360)}deg) scale(${(Math.random()*0.5+0.7).toFixed(2)})`;
                 img.style.animationDelay = (Math.random()*20).toFixed(1)+'s';
