@@ -21,6 +21,7 @@
       --max-card: 700px;
       --nav-bg: #232b15;
       --nav-accent: #ff9800;
+      --nav-burger-bg: rgba(34,43,21,0.95);
     }
     html { scroll-behavior: smooth;}
     body {
@@ -42,13 +43,14 @@
       justify-content: center;
       min-height: 54px;
       box-shadow: var(--shadow);
+      padding-left: 0;
     }
     .nav-inner {
       width: 100%;
       max-width: 1200px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       position: relative;
       height: 54px;
     }
@@ -63,9 +65,11 @@
       padding: 8px;
       margin: 0;
       z-index: 2301;
-      position: relative;
+      position: absolute;
+      left: 0;
+      top: 0;
       height: 54px;
-      min-width: 54px;
+      width: 54px;
     }
     .nav-burger span {
       display: block;
@@ -81,10 +85,12 @@
       padding: 0;
       margin: 0;
       display: flex;
-      gap: 38px;
+      gap: 40px;
       align-items: center;
       font-family: 'Inter', Arial, sans-serif;
       height: 54px;
+      justify-content: center;
+      width: 100%;
     }
     .nav-list li a {
       color: #fff;
@@ -99,9 +105,6 @@
     .nav-list li a:hover,
     .nav-list li a:focus {
       color: var(--highlight);
-    }
-    .nav-spacer {
-      flex: 1 1 0;
     }
     .cart-sticky {
       position: fixed;
@@ -139,10 +142,26 @@
         top: 0;
         height: 58px;
         width: 54px;
-        z-index: 2301;
+        z-index: 2501;
+        background: none;
+        border: none;
+        align-items: center;
+        justify-content: center;
       }
+      .nav-list-bg {
+        display: none;
+        position: fixed;
+        top: 58px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--nav-burger-bg);
+        z-index: 2499;
+        opacity: 1;
+      }
+      .nav-list-bg.show { display: block; }
       .nav-list {
-        position: absolute;
+        position: fixed;
         top: 58px;
         left: 0;
         right: 0;
@@ -152,8 +171,11 @@
         display: none;
         box-shadow: 0 4px 18px #ff980027;
         border-radius: 0 0 13px 13px;
-        z-index: 2300;
+        z-index: 2500;
         align-items: flex-start;
+        width: 100vw;
+        height: auto;
+        justify-content: flex-start;
       }
       .nav-list.show { display: flex; }
       .nav-list li a {
@@ -182,49 +204,60 @@
       z-index: 1202;
     }
     .header-inner {
-      max-width: 1120px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .header-row {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      gap: 18px;
-      padding-top: 34px;
-      padding-bottom: 0;
+      justify-content: center;
+      gap: 8px;
+      padding: 38px 0 16px 0;
+      width: 100%;
+    }
+    .header-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 4px;
     }
     .header-logo img {
-      height: 56px;
-      width: auto;
-      display: inline-block;
-      vertical-align: middle;
+      height: 54px;
+      width: 54px;
       border-radius: 10px;
       background: #fff0;
       box-shadow: none;
+      display: block;
+      margin: 0 auto;
     }
     .site-title {
       font-family: 'Inter', Arial, sans-serif;
-      font-size: 2.2em;
+      font-size: 2.1em;
       font-weight: 700;
       letter-spacing: .01em;
       color: var(--accent);
       margin-bottom: 2px;
       text-shadow: 0 1px 0 #0001;
-      display: inline-block;
-      vertical-align: middle;
+      display: block;
+      text-align: center;
     }
     .site-subtitle {
       font-size: 1.13em;
       color: #fff;
       font-weight: 500;
       letter-spacing: .01em;
-      margin-bottom: 6px;
+      margin-bottom: 0;
       text-shadow: 0 1px 0 #0002;
-      margin-left: 74px;
-      margin-top: 6px;
-      text-align: left;
+      text-align: center;
+      margin-top: 4px;
+      width: 100%;
     }
     main {
       max-width: 1060px;
@@ -590,6 +623,7 @@
       <button class="nav-burger" aria-label="Open Menu" onclick="toggleNavMenu()">
         <span></span><span></span><span></span>
       </button>
+      <div class="nav-list-bg" id="nav-list-bg"></div>
       <ul class="nav-list" id="nav-list">
         <li><a href="#about">ABOUT US</a></li>
         <li><a href="#category">PRODUCT</a></li>
@@ -597,22 +631,20 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">CONTACT</a></li>
       </ul>
-      <div class="nav-spacer"></div>
     </div>
   </nav>
   <header>
     <div class="header-inner">
       <div class="header-row">
         <div class="header-logo">
-          <img src="images/LOGO.png" alt="Pinnacle Goods Trading Logo" height="56" width="56" />
+          <img src="images/LOGO.png" alt="Pinnacle Goods Trading Logo" height="54" width="54" />
         </div>
         <span class="site-title">Pinnacle Goods Trading</span>
+        <div class="site-subtitle">Your Reliable Online Store for Quality Goods. Delivered to Your Doorstep</div>
       </div>
-      <div class="site-subtitle">Your Reliable Online Store for Quality Goods. Delivered to Your Doorstep</div><br>
     </div>
   </header>
   <main>
-    <!-- ALL SECTIONS FILLED, NOTHING OMITTED -->
     <div class="section-card" id="about">
       <h2 class="section-title"><span class="emoji">🧾</span>About Us</h2>
       <div class="section-body about-intro">
@@ -788,20 +820,26 @@
   <script>
     function toggleNavMenu() {
       var nav = document.getElementById('nav-list');
+      var bg = document.getElementById('nav-list-bg');
       nav.classList.toggle('show');
+      bg.classList.toggle('show');
     }
     window.addEventListener('resize', function() {
       if(window.innerWidth > 800) {
         document.getElementById('nav-list').classList.remove('show');
+        document.getElementById('nav-list-bg').classList.remove('show');
       }
     });
     document.addEventListener('click', function(e) {
       var nav = document.getElementById('nav-list');
       var burger = document.querySelector('.nav-burger');
+      var bg = document.getElementById('nav-list-bg');
       if(nav.classList.contains('show') &&
         !nav.contains(e.target) &&
-        !burger.contains(e.target)) {
+        !burger.contains(e.target) &&
+        !bg.contains(e.target)) {
         nav.classList.remove('show');
+        bg.classList.remove('show');
       }
     });
 
