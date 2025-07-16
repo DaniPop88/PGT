@@ -87,10 +87,10 @@
       display: flex;
       gap: 40px;
       align-items: center;
-      font-family: 'Inter', Arial, sans-serif;
       height: 54px;
       justify-content: center;
       width: 100%;
+      font-family: 'Inter', Arial, sans-serif;
     }
     .nav-list li a {
       color: #fff;
@@ -351,6 +351,18 @@
       color: var(--primary);
     }
     .why-card span { font-size:1.2em; margin-bottom:6px;}
+    .why-title {
+      font-weight: 700;
+      font-size: 1em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .why-desc {
+      font-weight: 400;
+      font-size: 1em;
+      color: var(--primary);
+      margin-top: 1px;
+    }
     .category-section {margin-bottom:54px;}
     .category-grid {
       display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; flex-direction: row;
@@ -687,11 +699,26 @@
     <div class="section-card">
       <h2 class="section-title"><span class="emoji">🌟</span>Why Shop With Us?</h2>
       <div class="why-list">
-        <div class="why-card"><span>📦</span> Registered Local Business</div>
-        <div class="why-card"><span>✅</span> Verified Original Products</div>
-        <div class="why-card"><span>💬</span> Responsive Support</div>
-        <div class="why-card"><span>🚚</span> Fast Delivery Nationwide</div>
-        <div class="why-card"><span>🧾</span> Receipts & Official Documents Available</div>
+        <div class="why-card">
+          <span>✅</span>
+          <div class="why-title">Verified, Authentic Products</div>
+          <div class="why-desc">We guarantee that all products are checked for authenticity, ensuring you receive only the best quality items every time you shop.</div>
+        </div>
+        <div class="why-card">
+          <span>💬</span>
+          <div class="why-title">24/7 Support, Always Available</div>
+          <div class="why-desc">Our customer support is available round-the-clock to assist with any issues or questions you may have, providing fast and effective solutions.</div>
+        </div>
+        <div class="why-card">
+          <span>🚚</span>
+          <div class="why-title">Fast Delivery Across the Country</div>
+          <div class="why-desc">We offer reliable and fast delivery, ensuring your orders reach you quickly, whether you're in Metro Manila or anywhere in the Philippines.</div>
+        </div>
+        <div class="why-card">
+          <span>🧾</span>
+          <div class="why-title">Official Receipts & Documents Provided</div>
+          <div class="why-desc">For every purchase, we provide official receipts and necessary documentation for transparency and peace of mind.</div>
+        </div>
       </div>
     </div>
     <div class="section-card" id="delivery">
@@ -901,6 +928,23 @@
         if(e.key === "Enter" || e.key === " ") showCart();
       });
       document.getElementById("cart-modal-bg").onclick = closeCart;
+
+      document.querySelectorAll('.nav-list li a').forEach(function(link){
+        link.addEventListener('click', function(e){
+          var nav = document.getElementById('nav-list');
+          var bg = document.getElementById('nav-list-bg');
+          if(nav.classList.contains('show')) {
+            e.preventDefault();
+            var targetId = link.getAttribute('href').replace('#','');
+            var target = document.getElementById(targetId);
+            if(target) {
+              target.scrollIntoView({behavior:'smooth'});
+            }
+            nav.classList.remove('show');
+            bg.classList.remove('show');
+          }
+        });
+      });
     });
 
     function toggleAbout() {
