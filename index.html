@@ -1074,11 +1074,15 @@
     }
     function submitOrder(event) {
       event.preventDefault();
-      document.getElementById('checkout-form').style.display = 'none';
+      // Save the cart to localStorage so order-summary.html can read it
+      localStorage.setItem('pinnacle_cart', JSON.stringify(cart));
+      // Optionally show a brief success message before redirect
       document.getElementById('checkout-success').style.display = '';
-      cart = [];
-      updateCart();
-      setTimeout(() => { closeCheckout(); }, 2200);
+      document.getElementById('checkout-form').style.display = 'none';
+      setTimeout(function() {
+        // Redirect to order summary page
+        window.location.href = "order-summary.html";
+      }, 1200); // 1.2s delay for visual feedback
       return false;
     }
   </script>
