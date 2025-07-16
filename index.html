@@ -580,29 +580,10 @@
       text-align: center;
     }
     .cart-modal .action-btn:hover { background: var(--highlight); color:var(--primary);}
-    .checkout-modal {
-      display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-      background:var(--card-bg); border-radius:var(--radius); box-shadow:0 4px 22px #ffa00020;
-      z-index:1400; width:98vw; max-width:390px; padding:28px 13px;
-      border:2px solid var(--accent); text-align:left;
-      font-family: 'Inter', Arial, sans-serif;
-      text-align: center;
-    }
-    .checkout-modal h2 { color:var(--accent);}
-    .checkout-modal label { display:block; margin-top:9px;}
-    .checkout-modal input[type="text"], .checkout-modal input[type="email"] {
-      width:94%; padding:8px; border-radius:8px; border:1.3px solid var(--accent); background:#fff8ef; color:var(--primary); font-family:inherit; font-size:.97em; margin-bottom:10px; outline:none;
-      font-family: 'Inter', Arial, sans-serif;
-      text-align: center;
-    }
-    .checkout-modal .order-summary {
-      margin:15px 0 12px 0; color:var(--accent); font-size:.97em; background:#fff3e0; border-radius:10px; padding:10px 14px; border:1.2px solid #ffcc29;
-      text-align: center;
-    }
-    .checkout-modal .action-btn { background: var(--accent); color:#fff; font-weight:600; margin-top:11px;}
-    .checkout-modal .action-btn:hover { background: var(--highlight); color: var(--primary);}
-    .checkout-modal .close-btn { background: var(--danger); color:#fff; margin-top:11px;}
-    .checkout-success { color: var(--success); font-weight:700; margin-top:13px; font-size:1.07em;}
+    /* Remove checkout-modal styling, we do not use modal anymore */
+    .checkout-modal { display:none !important; }
+    .checkout-modal-bg { display:none !important; }
+    .checkout-success { display:none !important; }
     footer {
       background: #fff3e0;
       color: #232b15;
@@ -669,7 +650,7 @@
     </div>
   </nav>
   <header>
-    <img src="images/BACKGROUND.png" class="header-bg-img" alt="Header Background" />
+    <img src="images/HP BACKGROUND.png" class="header-bg-img" alt="Header Background" />
     <div class="header-overlay"></div>
     <div class="header-inner">
       <div class="header-logo">
@@ -688,7 +669,7 @@
       <button class="about-readmore-btn" id="aboutReadMoreBtn" onclick="toggleAbout()">Read more</button>
       <div id="about-more" class="about-hide">
         <div class="section-body">
-          <br>All items are packed and shipped directly from our facility in Moonwalk, ensuring fast and reliable delivery across the country.
+          All items are packed and shipped directly from our facility in Moonwalk, ensuring fast and reliable delivery across the country.
         </div>
         <div class="section-body">
           Our mission is to provide a safe, secure, and efficient shopping experience for individuals and businesses nationwide. Whether you’re buying in bulk or shopping for personal needs, we ensure authentic products, clear service, and prompt delivery.
@@ -829,22 +810,6 @@
     <button class="action-btn" onclick="checkout()" aria-label="Checkout">Checkout</button>
     <button class="action-btn" onclick="emptyCart()" aria-label="Empty Cart">Empty Cart</button>
     <button class="action-btn close-btn" onclick="closeCart()" aria-label="Close">Close</button>
-  </aside>
-  <aside class="checkout-modal" id="checkout-modal" tabindex="-1">
-    <h2>Checkout</h2>
-    <form id="checkout-form" autocomplete="off" onsubmit="return submitOrder(event)">
-      <label for="customer-name">Full Name:</label>
-      <input type="text" id="customer-name" required maxlength="40" />
-      <label for="customer-email">Email:</label>
-      <input type="email" id="customer-email" required maxlength="60" />
-      <div class="order-summary" id="order-summary"></div>
-      <button class="action-btn" type="submit">Place Order</button>
-      <button class="action-btn close-btn" type="button" onclick="closeCheckout()">Cancel</button>
-    </form>
-    <div class="checkout-success" id="checkout-success" style="display:none;">
-      🎉 Thank you! Your order has been placed.<br>
-      We'll contact you soon for payment and shipping.
-    </div>
   </aside>
   <footer>
     <div class="footer-main">
@@ -1047,43 +1012,14 @@
         alert("Your cart is empty!");
         return;
       }
-      closeCart();
-      document.getElementById('checkout-modal').style.display = 'block';
-      renderOrderSummary();
+      // Save cart and redirect to order-summary.html
+      localStorage.setItem('pinnacle_cart', JSON.stringify(cart));
+      window.location.href = "order-summary.html";
     }
     function emptyCart() {
       if(!confirm("Are you sure you want to empty your cart?")) return;
       cart = [];
       updateCart();
-    }
-    function renderOrderSummary() {
-      const summary = document.getElementById('order-summary');
-      let html = '';
-      let total = 0;
-      cart.forEach(item => {
-        html += `${item.name} × ${item.qty} - ₱${(item.price*item.qty).toLocaleString()}<br>`;
-        total += item.price * item.qty;
-      });
-      html += `<strong>Total: ₱${total.toLocaleString()}</strong>`;
-      summary.innerHTML = html;
-      document.getElementById('checkout-success').style.display = 'none';
-      document.getElementById('checkout-form').style.display = '';
-    }
-    function closeCheckout() {
-      document.getElementById('checkout-modal').style.display = 'none';
-    }
-    function submitOrder(event) {
-      event.preventDefault();
-      // Save the cart to localStorage so order-summary.html can read it
-      localStorage.setItem('pinnacle_cart', JSON.stringify(cart));
-      // Optionally show a brief success message before redirect
-      document.getElementById('checkout-success').style.display = '';
-      document.getElementById('checkout-form').style.display = 'none';
-      setTimeout(function() {
-        // Redirect to order summary page
-        window.location.href = "order-summary.html";
-      }, 1200); // 1.2s delay for visual feedback
-      return false;
     }
   </script>
 </body>
