@@ -483,15 +483,16 @@
       overflow: hidden;
       position: relative;
       min-height: 200px;
-      display: flex; /* ADD THIS */
-      align-items: center; /* ADD THIS */
-      justify-content: center; /* ADD THIS */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .testimonial-slider-track {
       display: flex;
       transition: transform 0.7s cubic-bezier(0.49, 0.09, 0.47, 1.01);
       will-change: transform;
       justify-content: center;
+      width: 100%;
     }
     .testimonial-card {
       background: #fff7e0;
@@ -508,6 +509,8 @@
       margin: 0 11px;
       flex: 0 0 45%;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
     }
     .testimonial-name {
       font-weight: 700;
@@ -540,14 +543,18 @@
     .testimonial-arrow.next { right: 0; }
     @media (max-width: 600px) {
       .testimonial-slider-track {
-        justify-content: center !important; /* Tambah ini agar card di tengah */
+        justify-content: center !important;
+        width: 100%;
       }
       .testimonial-card {
-        min-width: 90vw;    /* Ganti dari 98vw ke 90vw */
-        max-width: 90vw;
-        margin: 0 auto;     /* Ganti margin supaya card selalu di tengah */
-        flex: 0 0 90vw;
+        width: 100%;
+        max-width: 95vw;
+        margin-left: auto;
+        margin-right: auto;
+        min-width: unset;
+        flex: 0 0 auto;
         box-sizing: border-box;
+        display: block;
       }
       .testimonial-arrow { display: none; }
     }
